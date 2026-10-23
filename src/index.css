@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #FAF6EF;
+  --color-cream-dark: #F2EADC;
+  --color-espresso: #2C1A0E;
+  --color-cocoa: #603D26;
+  --color-cocoa-light: #8B5E3C;
+  --color-gold: #C89B3C;
+  --color-goldlight: #E8C87A;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "system-ui", sans-serif;
+  --font-serif: "Fraunces", Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/*
+ * Dark mode: every component styles itself with the theme tokens, so
+ * remapping the tokens under .dark flips the whole site.
+ * Text over photos/canvas uses fixed hex values and is unaffected.
+ */
+.dark {
+  --color-cream: #171009;
+  --color-cream-dark: #251A10;
+  --color-white: #201711;
+  --color-espresso: #F1E6D4;
+  --color-cocoa: #D9C7B1;
+  --color-cocoa-light: #A38C73;
+  --color-gold: #D4A94C;
+  --color-goldlight: #E8C87A;
+}
+
+.dark body {
+  background-color: var(--color-cream);
+}
+
+/* Contrast fixes for inverted pairings in dark mode */
+.dark .bg-gold.text-espresso,
+.dark .bg-goldlight.text-espresso {
+  color: #241a11;
+}
+
+.dark .skeleton {
+  background: linear-gradient(90deg, #241a10 25%, #2e2216 50%, #241a10 75%);
+  background-size: 200% 100%;
+}
+
+.dark img {
+  filter: brightness(0.92);
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-espresso);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--color-espresso);
+  color: var(--color-cream);
+}
+
+/* Announcement marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Subtle shimmer for skeletons */
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #efe7d8 25%, #f7f1e6 50%, #efe7d8 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite;
+}
+
+/* Hide scrollbar for chip rows */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
